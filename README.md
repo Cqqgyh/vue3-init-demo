@@ -1,7 +1,18 @@
-# Vue 3 + Vite
+# /src/components/HelloWorld.vue
+## bug
+```js
+// todo start bug
+const part2RightTextList = reactive([
+{
+text: 'demo',
+isChecked: true,
+}
+])
+// 如果在目录中解开注释，打包后将无法预览查看
+// 重现条件：同时使用{immediate: true, deep: true}
+watch( ()=> part2RightTextList, (newValue, oldValue) => {
+part2RightTextList[0].isChecked = !!newValue.every(item => !item.isChecked);
+}, {immediate: true, deep: true})
+// end bug
+```
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
